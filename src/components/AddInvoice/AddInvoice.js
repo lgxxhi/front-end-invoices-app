@@ -5,31 +5,69 @@ import moment from "moment";
 
 function AddInvoice() {
   let navigate = useNavigate();
+  const url = process.env.REACT_APP_API_URL;
 
   const [invoiceData, setInvoiceData] = useState({
-    createdAt: "",
-    paymentDue: "",
+    createdat: "",
+    paymentdue: "",
     description: "",
-    paymentTerms: 0,
-    clientName: "",
-    clientEmail: "",
-    isPaid: false,
-    senderStreetAddress: "",
-    senderCity: "",
-    senderPostCode: "",
-    senderCountry: "",
-    clientStreetAddress: "",
-    clientCity: "",
-    clientPostCode: "",
-    clientCountry: "",
+    paymentterms: 1,
+    clientname: "",
+    clientemail: "",
+    ispaid: false,
+    senderstreetaddress: "",
+    sendercity: "",
+    senderpostcode: "",
+    sendercountry: "",
+    clientstreetaddress: "",
+    clientcity: "",
+    clientpostcode: "",
+    clientcountry: "",
   });
+
+  const handleChange = (e) => {
+    setInvoiceData({
+      ...invoiceData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let paymentDue = moment(invoiceData.createdat)
+      .add(invoiceData.paymentterms, "d")
+      .format("ll");
+    let paymentDueDate = moment(paymentDue).format("YYYY-MM-DD");
+
+    console.log(paymentDueDate);
+
+    try {
+      const updatedInvoiceData = {
+        ...invoiceData,
+        paymentdue: paymentDueDate,
+      };
+
+      setInvoiceData(updatedInvoiceData);
+
+      let result = await axios.post(`${url}/invoices/`, {
+        ...invoiceData,
+      });
+      await axios.put(`${url}/invoices/${result.data.id}`, {
+        ...updatedInvoiceData,
+      });
+      alert("New invoice added!");
+      navigate(`/invoices/${result.data.id}`);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <div className="add-pet container row-sm-1">
       <div>
         <h2>New Invoice</h2>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <h5>Bill From</h5>
         </div>
@@ -41,8 +79,10 @@ function AddInvoice() {
             <input
               type="text"
               className="form-control"
-              name="senderStreetAddress"
-              id="senderStreetAddress"
+              name="senderstreetaddress"
+              id="senderstreetaddress"
+              onChange={handleChange}
+              value={invoiceData.senderstreetaddress}
               required
             />
           </div>
@@ -54,8 +94,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="senderCity"
-              id="senderCity"
+              name="sendercity"
+              id="sendercity"
+              value={invoiceData.sendercity}
+              onChange={handleChange}
             />
           </div>
 
@@ -67,8 +109,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="senderPostCode"
-              id="senderPostCode"
+              name="senderpostcode"
+              id="senderpostcode"
+              onChange={handleChange}
+              value={invoiceData.senderpostcode}
             />
           </div>
 
@@ -81,8 +125,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="senderCountry"
-              id="senderCountry"
+              name="sendercountry"
+              id="sendercountry"
+              onChange={handleChange}
+              value={invoiceData.sendercountry}
             />
           </div>
 
@@ -99,8 +145,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="clientName"
-              id="clientName"
+              name="clientname"
+              id="clientname"
+              onChange={handleChange}
+              value={invoiceData.clientname}
             />
           </div>
 
@@ -113,8 +161,10 @@ function AddInvoice() {
               required
               type="email"
               className="form-control"
-              name="clientEmail"
-              id="clientEmail"
+              name="clientemail"
+              id="clientemail"
+              onChange={handleChange}
+              value={invoiceData.clientemail}
             />
           </div>
 
@@ -125,8 +175,10 @@ function AddInvoice() {
             <input
               type="text"
               className="form-control"
-              name="clientStreetAddress"
-              id="clientStreetAddress"
+              name="clientstreetaddress"
+              id="clientstreetaddress"
+              onChange={handleChange}
+              value={invoiceData.clientstreetaddress}
               required
             />
           </div>
@@ -138,8 +190,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="clientCity"
-              id="clientCity"
+              name="clientcity"
+              id="clientcity"
+              onChange={handleChange}
+              value={invoiceData.clientcity}
             />
           </div>
 
@@ -151,8 +205,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="clientPostCode"
-              id="clientPostCode"
+              name="clientpostcode"
+              id="clientpostcode"
+              onChange={handleChange}
+              value={invoiceData.clientpostcode}
             />
           </div>
 
@@ -165,8 +221,10 @@ function AddInvoice() {
               required
               type="text"
               className="form-control"
-              name="clientCountry"
-              id="clientCountry"
+              name="clientcountry"
+              id="clientcountry"
+              onChange={handleChange}
+              value={invoiceData.clientcountry}
             />
           </div>
 
@@ -179,10 +237,10 @@ function AddInvoice() {
               required
               type="date"
               className="form-control"
-              name="createdAt"
-              id="createdAt"
-              value={moment().format("YYYY-MM-DD")}
-              onChange={(e) => console.log(e.target.value)}
+              name="createdat"
+              id="createdat"
+              value={moment(invoiceData.createdat).format("YYYY-MM-DD")}
+              onChange={handleChange}
             />
           </div>
           <div className="col-md-6">
@@ -192,7 +250,10 @@ function AddInvoice() {
 
             <select
               className="form-select"
-              onChange={(e) => console.log(e.target.value)}
+              onChange={handleChange}
+              value={invoiceData.paymentterms}
+              name="paymentterms"
+              id="paymentterms"
             >
               <option value={Number("1")}>Net 1 Day</option>
               <option value={Number("7")}>Net 7 Days</option>
@@ -210,6 +271,8 @@ function AddInvoice() {
               className="form-control"
               name="description"
               id="description"
+              onChange={handleChange}
+              value={invoiceData.description}
             />
           </div>
 
@@ -217,7 +280,29 @@ function AddInvoice() {
             <button type="submit" className="btn btn-outline-dark">
               Save and Send
             </button>
-            <button type="submit" className="btn btn-outline-dark">
+            <button
+              type="submit"
+              className="btn btn-outline-dark"
+              onClick={() =>
+                setInvoiceData({
+                  createdat: "",
+                  paymentdue: "",
+                  description: "",
+                  paymentterms: 1,
+                  clientname: "",
+                  clientemail: "",
+                  ispaid: false,
+                  senderstreetaddress: "",
+                  sendercity: "",
+                  senderpostcode: "",
+                  sendercountry: "",
+                  clientstreetaddress: "",
+                  clientcity: "",
+                  clientpostcode: "",
+                  clientcountry: "",
+                })
+              }
+            >
               Discard
             </button>
           </div>

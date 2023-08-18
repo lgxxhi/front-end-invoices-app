@@ -1,0 +1,20 @@
+.invoice-card-link {
+  text-decoration: none;
+}
+
+.add-btn {
+  background-color: #7c5dfa;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  padding-left: 10px;
+  padding-right: 15px;
+  border: none;
+}
+
+.plus {
+  background-color: white;
+
+  padding: 12px;
+  border-radius: 20px;
+}

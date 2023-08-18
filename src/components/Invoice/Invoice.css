@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=League+Spartan&family=Nunito&family=Satisfy&display=swap");
+
+.invoice-view {
+  font-family: "League Spartan", sans-serif;
+}
+
+.status {
+  color: #888eb0;
+}
+
+.confirmation-message {
+  color: #888eb0;
+}
+
+.cancel {
+  background-color: #f8f8fb;
+  color: #888eb0;
+}
+.delete {
+  background-color: #ec5757;
+  color: white;
+}
+
+.bottom-content {
+  background-color: #f8f8fb;
+}
+
+.pending {
+  width: 100px;
+  border-radius: 10px;
+  background-color: #ffc1073c;
+  color: #d59501;
+  font-weight: 900;
+}
+
+.paid {
+  width: 100px;
+  border-radius: 10px;
+  background-color: #2b986560;
+  color: #198754;
+  font-weight: 900;
+}
+
+.mark-as-paid-btn {
+  background-color: #7c5dfa;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+}
+
+.delete-btn {
+  background-color: #ec5757;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+}
+
+.edit-btn {
+  background-color: #f8f8fb;
+  color: #7e88c3;
+  font-weight: bold;
+  padding: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+}
