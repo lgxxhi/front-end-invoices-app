@@ -11,6 +11,7 @@ function Invoices() {
   let url = process.env.REACT_APP_API_URL;
 
   const [invoicesData, setInvoicesData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getInvoicesData();
@@ -21,6 +22,7 @@ function Invoices() {
     try {
       let result = await axios.get(`${url}/invoices`);
       setInvoicesData(result.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -50,26 +52,25 @@ function Invoices() {
               <span className="fw-bold">Filter By Status</span>
             </button>
             <ul className="dropdown-menu">
-              <div class="form-check dropdown-item ">
+              <div className="form-check dropdown-item ">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
                 />
-                <label class="form-check-label" for="flexRadioDefault1">
+                <label className="form-check-label" htmlFor="flexRadioDefault1">
                   Default radio
                 </label>
               </div>
-              <div class="form-check dropdo">
+              <div className="form-check dropdo">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
-                  checked
                 />
-                <label class="form-check-label" for="flexRadioDefault2">
+                <label className="form-check-label" htmlFor="flexRadioDefault2">
                   Default checked radio
                 </label>
               </div>
@@ -90,27 +91,29 @@ function Invoices() {
         </div>
       </div>
       <div
-        class="offcanvas offcanvas-start"
-        tabindex="-1"
+        className="offcanvas offcanvas-start"
+        tabIndex="-1"
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
       >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel"></h5>
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title" id="offcanvasExampleLabel"></h5>
           <button
             type="button"
-            class="btn-close"
+            className="btn-close"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
           ></button>
         </div>
-        <div class="offcanvas-body">
+        <div className="offcanvas-body">
           <AddInvoice />
         </div>
       </div>
       <hr className="mb-4" />
 
-      {invoicesData.length > 0 ? (
+      {loading ? (
+        <div className="loader">Loading...</div>
+      ) : invoicesData.length > 0 ? (
         invoicesData.map((item) => {
           return (
             <div

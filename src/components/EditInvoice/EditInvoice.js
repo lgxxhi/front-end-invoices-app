@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+// import Items from "../Items/Items";
 import moment from "moment";
 
 function EditInvoice() {
@@ -304,12 +305,18 @@ function EditInvoice() {
               onChange={handleTextChange}
             />
           </div>
+          {/* <div>
+            <Items />
+          </div> */}
 
           <div className="col-12">
             <button type="submit" className="btn btn-outline-dark">
               Save Changes
             </button>
-            <button type="submit" className="btn btn-outline-dark">
+            <button
+              onClick={() => navigate(`/invoices/${id}`)}
+              className="btn btn-outline-dark"
+            >
               Cancel
             </button>
           </div>

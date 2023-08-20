@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./Invoice.css";
 import moment from "moment";
+import Items from "../Items/Items";
 
 function Invoice() {
   let url = process.env.REACT_APP_API_URL;
@@ -247,6 +248,7 @@ function Invoice() {
           </div>
         </div>
         <hr />
+
         <div className="bottom-content container border border-2 rounded">
           <div className="d-flex">
             <div className="p-2 flex-fill">
@@ -262,6 +264,23 @@ function Invoice() {
               <p className="status">Total</p>
             </div>
           </div>
+          {/* <div className="d-flex">
+            <div className="p-2 flex-fill">
+              <p className="fw-bold">Item Name</p>
+            </div>
+            <div className="p-2 flex-fill">
+              <p className="fw-bold">QTY.</p>
+            </div>
+            <div className="p-2 flex-fill">
+              <p className="fw-bold">Price</p>
+            </div>
+            <div className="p-2 flex-fill">
+              <p className="fw-bold">Total</p>
+            </div>
+          </div> */}
+          <Items />
+
+          <div className="amount-due-div fs-4 fw-bold">556</div>
         </div>
       </div>
     </div>
