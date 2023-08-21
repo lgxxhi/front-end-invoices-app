@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import "./Items.css";
 
-function ItemForm(props, { getItemTotal }) {
+function ItemForm(props) {
   let { id } = useParams();
 
   const { itemDetails } = props;
@@ -20,12 +21,6 @@ function ItemForm(props, { getItemTotal }) {
     }
   }, [id, itemDetails, props]);
 
-  function getItemTotal() {
-    let itemTotal = item.price * item.quantity;
-
-    return itemTotal;
-  }
-
   function handleChange(e) {
     setItem({
       ...item,
@@ -41,54 +36,71 @@ function ItemForm(props, { getItemTotal }) {
   }
 
   return (
-    <div className="edit-item">
+    <div className="edit-item container row-sm-1">
       {props.children}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="item_name">Item Name</label>
-        <input
-          required
-          type="text"
-          id="item_name"
-          placeholder="Item Name..."
-          value={item.item_name}
-          onChange={handleChange}
-        />
-        <label htmlFor="quantity">QTY.</label>
-        <input
-          required
-          type="number"
-          min={1}
-          id="quantity"
-          placeholder="Quantity..."
-          value={item.quantity}
-          onChange={handleChange}
-        />
-        <label htmlFor="price">Price</label>
-        <input
-          required
-          type="number"
-          id="price"
-          placeholder="Price..."
-          min={0}
-          value={item.price}
-          onChange={handleChange}
-          step="any"
-        />
-        <label htmlFor="total">Total:</label>
-
-        <input
-          disabled
-          type="number"
-          id="total"
-          placeholder="Total..."
-          min={0}
-          value={getItemTotal()}
-          onChange={handleChange}
-          step="any"
-        />
-
-        <br />
-        <input type="submit" />
+        <div className="row g-3">
+          <div className="col-md-3">
+            <label>
+              <small>Item Name</small>
+            </label>
+            <input
+              required
+              type="text"
+              id="item_name"
+              placeholder="Item Name..."
+              value={item.item_name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-md-3">
+            <label>
+              <small>Quantity</small>
+            </label>
+            <input
+              required
+              type="number"
+              min={1}
+              id="quantity"
+              placeholder="Quantity..."
+              value={item.quantity}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-md-3">
+            <label className="me-3">
+              <small>Price</small>
+            </label>
+            <input
+              required
+              type="number"
+              id="price"
+              placeholder="Price..."
+              min={0}
+              value={item.price}
+              onChange={handleChange}
+              step="any"
+            />
+          </div>
+          <div className="col-md-3">
+            <label className="me-3">
+              <small>Total</small>
+            </label>
+            <input
+              disabled
+              type="number"
+              id="total"
+              placeholder="Total..."
+              min={0}
+              value={(item.total = item.price * item.quantity)}
+              onChange={handleChange}
+              step="any"
+            />
+          </div>
+        </div>
+        <div className="text-center mt-3">
+          <button className="btn btn-outline-dark ">Submit</button>
+        </div>
       </form>
     </div>
   );

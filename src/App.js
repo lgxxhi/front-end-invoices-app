@@ -5,11 +5,13 @@ import Invoice from "./components/Invoice/Invoice";
 import Home from "./components/Home/Home";
 import EditInvoice from "./components/EditInvoice/EditInvoice";
 import Invoices from "./components/Invoices/Invoices";
+import Nav from "./components/Nav/Nav";
 
 function App() {
   return (
     <div className="App ">
       <Router>
+        <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/invoices" element={<Invoices />} />

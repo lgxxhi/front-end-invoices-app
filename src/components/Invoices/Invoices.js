@@ -27,9 +27,10 @@ function Invoices() {
       console.log(error);
     }
   }
+  const [items, setItems] = useState([]);
 
   return (
-    <div className="invoices-view container mt-5">
+    <div className="invoices-view border border-2 container mt-5">
       <div className="d-flex">
         <div className="p-2 flex-fill">
           <h2 className="fw-bold ">Invoices</h2>
@@ -139,6 +140,37 @@ function Invoices() {
                   <div className="p-2 flex-fill">
                     <p className="status">Total</p>
                   </div>
+                  <div className="p-2 flex-fill">
+                    {item.ispaid ? (
+                      <div className="paid fw-bold">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          className="bi bi-dot pb-1"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                        </svg>
+                        Paid
+                      </div>
+                    ) : (
+                      <div className="pending fw-bold ">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          className="bi bi-dot pb-1 "
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                        </svg>
+                        Pending
+                      </div>
+                    )}
+                  </div>
                 </div>
               </Link>
             </div>
@@ -150,7 +182,7 @@ function Invoices() {
           <div className="mt-5 text-center">
             <p className="fs-4 fw-bold ">There is nothing here</p>
             <p className="mb-0 status">
-              <small>Create and invoice by clicking the</small>
+              <small>Create an invoice by clicking the</small>
             </p>
             <p className="status">
               <small>

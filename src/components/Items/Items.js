@@ -10,7 +10,7 @@ function Items() {
   const { id } = useParams();
 
   const [items, setItems] = useState([]);
-  // console.log(items.id === 1);
+  const [toggleView, setToggleView] = useState(false);
 
   useEffect(() => {
     fetchInvoiceItems();
@@ -21,7 +21,7 @@ function Items() {
       let result = await axios.post(`${url}/invoices/${id}/items`, newItem);
 
       setItems([result.data, ...items]);
-      console.log(items);
+      // console.log(items);
     } catch (error) {
       console.log(error);
     }
@@ -66,19 +66,25 @@ function Items() {
     try {
       let result = await axios.get(`${url}/invoices/${id}/items`);
       console.log(result.data);
+
       setItems(result.data);
     } catch (error) {
       console.log(error);
     }
   }
 
+  function handleTotalDue() {
+    let totalDue = items.reduce((n, { total }) => n + Number(total), 0);
+
+    return totalDue;
+  }
+
+  function toggleAddItem() {
+    setToggleView(!toggleView);
+  }
+
   return (
-    <div className="Items">
-      {/* <div className="border border-2 p-4">
-        <ItemForm handleSubmit={handleAdd}>
-          <h3 className="fw-bold">Add a New Item</h3>
-        </ItemForm>
-      </div> */}
+    <div className="Items ">
       {items.map((unit) => {
         return (
           <Item
@@ -86,9 +92,28 @@ function Items() {
             key={unit.id}
             item={unit}
             handleDelete={handleDelete}
+            totalDue={handleTotalDue}
           />
         );
       })}
+      <div className="border-top border-end border-start border-2 rounded-top p-4">
+        <div
+          onClick={() => toggleAddItem()}
+          className="fw-bold text-center toggle-add"
+        >
+          {toggleView ? <div>Close</div> : <div>Add a new item</div>}
+        </div>
+        {!toggleView ? null : <ItemForm handleSubmit={handleAdd} />}
+      </div>
+      <div className="amount-due-div fw-bold border-start border-end rounded-bottom d-flex justify-content-between">
+        <div className="fs-5">
+          <small>Amount Due</small>
+        </div>
+        <div className="fs-2">
+          ${handleTotalDue()}
+          {handleTotalDue() % 1 != 0 ? null : ".00"}
+        </div>
+      </div>
     </div>
   );
 }

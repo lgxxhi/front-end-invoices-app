@@ -65,7 +65,7 @@ function Invoice() {
   return (
     <div className="invoice-view container mt-5 ">
       <div>
-        <button onClick={() => navigate("/invoices")} className="btn btn-light">
+        <button onClick={() => navigate("/invoices")} className="btn ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -82,7 +82,6 @@ function Invoice() {
           Go Back
         </button>
       </div>
-
       <div className="card pt-2 px-3 card-top">
         <div className="d-flex">
           <div className="p-2">
@@ -135,6 +134,7 @@ function Invoice() {
               Delete
             </button>
           </div>
+
           <div className="p-2 justify-content-end">
             {!invoiceState.ispaid ? (
               <button
@@ -208,7 +208,7 @@ function Invoice() {
         </div>
       </div>
       <br />
-      <div className="card p-4 bottom-card">
+      <div className="border border-1 card p-4 bottom-card">
         <div className="top-content container d-flex justify-content-between mb-1">
           <div>
             <p className="mb-1">
@@ -248,39 +248,17 @@ function Invoice() {
           </div>
         </div>
         <hr />
-
-        <div className="bottom-content container border border-2 rounded">
-          <div className="d-flex">
-            <div className="p-2 flex-fill">
-              <p className="status">Item Name</p>
-            </div>
-            <div className="p-2 flex-fill">
-              <p className="status">QTY.</p>
-            </div>
-            <div className="p-2 flex-fill">
-              <p className="status">Price</p>
-            </div>
-            <div className="p-2 flex-fill">
-              <p className="status">Total</p>
+        <div className="bottom-content container  pt-4 pb-4 border border-2 rounded">
+          <div className="container text-start">
+            <div className="row">
+              <div className="col-6 status ">Item Name</div>
+              <div className="col-2 status">QTY.</div>
+              <div className="col-2 status">Price</div>
+              <div className="col-2 status">Total</div>
             </div>
           </div>
-          {/* <div className="d-flex">
-            <div className="p-2 flex-fill">
-              <p className="fw-bold">Item Name</p>
-            </div>
-            <div className="p-2 flex-fill">
-              <p className="fw-bold">QTY.</p>
-            </div>
-            <div className="p-2 flex-fill">
-              <p className="fw-bold">Price</p>
-            </div>
-            <div className="p-2 flex-fill">
-              <p className="fw-bold">Total</p>
-            </div>
-          </div> */}
-          <Items />
 
-          <div className="amount-due-div fs-4 fw-bold">556</div>
+          <Items />
         </div>
       </div>
     </div>
