@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import empty from "./empty.svg";
@@ -27,7 +27,6 @@ function Invoices() {
       console.log(error);
     }
   }
-  const [items, setItems] = useState([]);
 
   return (
     <div className="invoices-view border border-2 container mt-5">

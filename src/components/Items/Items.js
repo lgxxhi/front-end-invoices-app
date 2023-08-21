@@ -14,6 +14,7 @@ function Items() {
 
   useEffect(() => {
     fetchInvoiceItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, url]);
 
   async function handleAdd(newItem) {
@@ -111,7 +112,7 @@ function Items() {
         </div>
         <div className="fs-2">
           ${handleTotalDue()}
-          {handleTotalDue() % 1 != 0 ? null : ".00"}
+          {handleTotalDue() % 1 !== 0 ? null : ".00"}
         </div>
       </div>
     </div>
