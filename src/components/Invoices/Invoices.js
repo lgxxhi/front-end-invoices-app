@@ -97,7 +97,6 @@ function Invoices() {
         aria-labelledby="offcanvasExampleLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasExampleLabel"></h5>
           <button
             type="button"
             className="btn-close"
