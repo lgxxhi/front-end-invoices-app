@@ -1,6 +1,6 @@
-# Adoption CRUD APP
+# Invoice CRUD APP
 
-This README provides an overview of the Adoption CRUD (Create, Read, Update, Delete) App, which is a web application built using PostgreSQL, Express.js, React.js, and Node.js. The purpose of this application is to manage adoption records for pets in an animal shelter.
+This README provides an overview of the Invoice CRUD (Create, Read, Update, Delete) App, which is a web application built using PostgreSQL, Express.js, React.js, and Node.js. The purpose of this application is to manage invoices sent out to clients from vendors.
 
 ## Features
 
