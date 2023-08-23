@@ -45,9 +45,9 @@ Make sure to clone backend repository and run it on local server 3001, more inst
 ## Additional Links
 
 - **Netlify:** https://invoices-pern-app.netlify.app/
-- **Render:** https://adoption-backend.onrender.com/
+- **Render:** https://backend-invoices.onrender.com
 
 ## Contributors
 
-https://backend-invoices.onrender.com
+
 **Luis Garcia**
