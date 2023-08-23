@@ -71,20 +71,20 @@ function Invoice() {
             width="16"
             height="16"
             fill="currentColor"
-            className="bi bi-chevron-left"
+            className="bi bi-chevron-left dot"
             viewBox="0 0 16 16"
           >
             <path
               fillRule="evenodd"
               d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
             />
-          </svg>{" "}
+          </svg>
           Go Back
         </button>
       </div>
-      <div className="card pt-2 px-3 card-top">
-        <div className="d-flex">
-          <div className="p-2">
+      <div className="card pt-2 px-3 card-top ">
+        <div className="d-flex ">
+          <div className="p-2 ">
             <p className="status">Status</p>
           </div>
           <div className="p-2 flex-fill">

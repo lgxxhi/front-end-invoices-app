@@ -10,6 +10,7 @@ import AddInvoice from "../AddInvoice/AddInvoice";
 function Invoices() {
   let url = process.env.REACT_APP_API_URL;
 
+  const [filteredStatus, setFilteredStatus] = useState("");
   const [invoicesData, setInvoicesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,56 +23,105 @@ function Invoices() {
     try {
       let result = await axios.get(`${url}/invoices`);
       setInvoicesData(result.data);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
     }
   }
 
+  async function filterInovicesData(e) {
+    console.log(e.target.value);
+    let result = await axios.get(`${url}/invoices`);
+    console.log(result.data);
+    let filtered;
+    if (e.target.value === "paid") {
+      filtered = result.data.filter((item) => item.ispaid === true);
+      setFilteredStatus("paid");
+    } else if (e.target.value === "pending") {
+      filtered = result.data.filter((item) => item.ispaid === false);
+      setFilteredStatus("pending");
+    } else if (e.target.value === "all") {
+      setFilteredStatus("all");
+      return setInvoicesData(result.data);
+    }
+    setInvoicesData(filtered);
+  }
+
+  // filterInovicesData();
+
   return (
-    <div className="invoices-view border border-2 container mt-5">
+    <div className="invoices-view  container mt-5">
       <div className="d-flex">
         <div className="p-2 flex-fill">
           <h2 className="fw-bold ">Invoices</h2>
           <p className="status">
             {invoicesData.length > 0 ? (
-              <small>There are {invoicesData.length} total invoices</small>
+              <small>
+                There {invoicesData.length === 1 ? "is " : "are "}
+                {invoicesData.length}{" "}
+                {filteredStatus === "paid"
+                  ? "paid "
+                  : filteredStatus === "pending"
+                  ? "pending "
+                  : "total "}
+                {invoicesData.length === 1 ? "invoice" : "invoices"}
+              </small>
             ) : (
               <small>No Invoices</small>
             )}
           </p>
         </div>
         <div className="p-2 justify-content-md-end mt-3">
-          <div className="dropdown-center">
+          <div className="dropdown-center pt-1">
             <button
-              className="dropdown-toggle"
+              className="dropdown-toggle btn"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <span className="fw-bold">Filter By Status</span>
+              <span className="fw-bold ">Filter By Status</span>
             </button>
-            <ul className="dropdown-menu">
-              <div className="form-check dropdown-item ">
+            <ul className="dropdown-menu p-2">
+              <div className="form-check ">
                 <input
                   className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault1"
+                  value={"paid"}
+                  onClick={(e) => filterInovicesData(e)}
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault1">
-                  Default radio
+                  Paid
                 </label>
               </div>
-              <div className="form-check dropdo">
+
+              <div className="form-check ">
                 <input
                   className="form-check-input"
                   type="radio"
                   name="flexRadioDefault"
                   id="flexRadioDefault2"
+                  value={"pending"}
+                  onClick={(e) => filterInovicesData(e)}
                 />
                 <label className="form-check-label" htmlFor="flexRadioDefault2">
-                  Default checked radio
+                  Pending
+                </label>
+              </div>
+
+              <div className="form-check ">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="flexRadioDefault"
+                  id="flexRadioDefault1"
+                  value={"all"}
+                  onClick={(e) => filterInovicesData(e)}
+                />
+                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                  All
                 </label>
               </div>
             </ul>
@@ -138,9 +188,9 @@ function Invoices() {
                   <div className="p-2 flex-fill">
                     <p className="status">Total</p>
                   </div>
-                  <div className="p-2 flex-fill">
+                  <div className="p-2 flex-fill d-flex align-items-center">
                     {item.ispaid ? (
-                      <div className="paid fw-bold">
+                      <div className="paid fw-bold ">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="16"
