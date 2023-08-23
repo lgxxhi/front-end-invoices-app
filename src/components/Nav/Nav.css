@@ -9,11 +9,12 @@
 
 .logo {
   padding: 25%;
-  background: rgb(124, 93, 250);
+  background: rgb(193, 178, 255);
+  background: rgb(193, 178, 255);
   background: linear-gradient(
-    90deg,
-    rgba(124, 93, 250, 1) 48%,
-    rgba(193, 178, 255, 1) 100%
+    0deg,
+    rgba(193, 178, 255, 1) 30%,
+    rgba(124, 93, 250, 1) 62%
   );
 
   border-radius: 10px;

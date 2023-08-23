@@ -78,3 +78,7 @@
     height: 5em;
   }
 }
+
+.dropdown-btn {
+  border: none;
+}

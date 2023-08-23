@@ -75,7 +75,7 @@ function Invoices() {
         <div className="p-2 justify-content-md-end mt-3">
           <div className="dropdown-center pt-1">
             <button
-              className="dropdown-toggle btn"
+              className="dropdown-toggle btn dropdown-btn"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
