@@ -1,3 +1,20 @@
 .navbar {
   background-color: #252945;
 }
+/* 
+.logo-img {
+  padding: ;
+  background-color: red;
+} */
+
+.logo {
+  padding: 25%;
+  background: rgb(124, 93, 250);
+  background: linear-gradient(
+    90deg,
+    rgba(124, 93, 250, 1) 48%,
+    rgba(193, 178, 255, 1) 100%
+  );
+
+  border-radius: 10px;
+}
